@@ -70,8 +70,15 @@ def main():
             f.write("# " + repo_name)
         
         # Create a .gitignore file
-        with open(os.path.join(repo_location, repo_name, ".gitignore"), "w") as f:
-            f.write("*.pyc\n__pycache__/\n")
+        import requests
+
+        url = 'https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore'
+        response = requests.get(url)
+
+        with open(os.path.join(repo_location, repo_name, '.gitignore'), 'w') as f:
+            f.write(response.text)
+            f.write("*.wpr")
+
         
         # Add the README and .gitignore files to the staging area
         subprocess.run(["git", "add", "README.md", ".gitignore"], cwd=os.path.join(repo_location, repo_name))
@@ -94,8 +101,14 @@ def main():
             f.write("# " + repo_name)
         
         # Create a .gitignore file
-        with open(os.path.join(repo_location, repo_name, ".gitignore"), "w") as f:
-            f.write("*.pyc\n__pycache__/\n")
+        import requests
+
+        url = 'https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore'
+        response = requests.get(url)
+
+        with open(os.path.join(repo_location, repo_name, '.gitignore'), 'w') as f:
+            f.write(response.text)
+            f.write("*.wpr")
         
         # Add the README and .gitignore files to the staging area
         subprocess.run(["git", "add", "README.md", ".gitignore"], cwd=os.path.join(repo_location, repo_name))
